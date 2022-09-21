@@ -1,33 +1,29 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const randomize = require('../utils/randomize');
 
-class Project extends Model {}
+class Race extends Model {}
 
-Project.init(
+Race.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
       autoIncrement: true,
+    },
+    race_id: {    //have to add a hook that randomizes race_id
+      type: DataType.STRING,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.STRING,
-    },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    needed_funding: {
-      type: DataTypes.FLOAT,
+    duration: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    user_id: {
+    participants: {[],    //list participants here
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
