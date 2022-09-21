@@ -32,6 +32,12 @@ Race.init(
     },
   },
   {
+    hooks: {
+      beforeCreate: async (newRace) => {
+        newRace.race_id = await randomize();
+        return newRace;
+      },
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
