@@ -13,6 +13,7 @@ UserRace.init(
     },
     racer_choice: {
       // references a user's selection for a particular race
+      // if == -1, indicates the user is the host and therefore may not select a racer
       type: DataTypes.INTEGER,
       allowNull: false,
     },
