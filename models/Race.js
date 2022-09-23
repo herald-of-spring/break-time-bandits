@@ -13,7 +13,7 @@ Race.init(
       primaryKey: true,
     },
     race_id: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       // primaryKey: true,
     },
     name: {
