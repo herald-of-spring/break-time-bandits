@@ -9,7 +9,7 @@ Race.belongsToMany(User, {
 
 User.belongsToMany(Race, {
   through: UserRace,
-  foreignKey: "user_id,"
+  foreignKey: "user_id"
 });
 
 module.exports = { User, Race };

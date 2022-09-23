@@ -23,11 +23,23 @@ Race.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    gold: {
+      type: DataTypes.INTEGER,
+    },
+    silver: {
+      type: DataTypes.INTEGER,
+    },
+    bronze: {
+      type: DataTypes.INTEGER,
+    }
   },
   {
     hooks: {
       beforeCreate: async (newRace) => {
         newRace.race_id = await randomize();
+        newRace.gold = -1;
+        newRace.silver = -1;
+        newRace.bronze = -1;
         return newRace;
       },
     },

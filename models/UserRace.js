@@ -11,6 +11,16 @@ UserRace.init(
       primaryKey: true,
       autoIncrement: true
     },
+    racer_choice: {
+      // references a user's selection for a particular race
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    participant_message: {
+      // references a user's message for a particular race
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       // references the user model's id
@@ -36,3 +46,5 @@ UserRace.init(
     modelName: 'user_race',
   }
 );
+
+module.exports = UserRace;
