@@ -1,0 +1,17 @@
+{{#if races.length}}
+  <div class="col-md-6 project-list">
+    <h3>Current races:</h3>
+
+    {{#each race}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/homepage/{{race}}">{{race_time}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{race_time}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>

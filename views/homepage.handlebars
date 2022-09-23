@@ -1,18 +1,7 @@
 <!-- Loop over each object in the projects array -->
-{{#each users as |user| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-    {{username}}
-    </h2>
-    <p>
-      <span class="racer-id">{{racer_id}}</span>
-    </p>
-  </div>
-  <div class="col-md-7">
-    <p>
-      {{participant_message}}
-    </p>
-  </div>
-</div>
-{{/each}}
+
+<ul class="list-group">
+  {{#each race}}
+  <li class="list-group-item">{{race_id}}<button class="btn btn-primary" id="join-btn">Join!</button></li>
+  {{/each}}
+</ul>

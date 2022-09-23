@@ -1,0 +1,19 @@
+{{#each user}}
+<div class="row mb-4 project">
+  <div class="col-md-5">
+    <h2>
+    {{username}}
+    </h2>
+    <p>
+      <span class="racer-id">{{racer_choice}}</span>
+    </p>
+  </div>
+  {{#if participant_message}}
+  <div class="col-md-7">
+    <p>
+      {{participant_message}}
+    </p>
+  </div>
+  {{/if}}
+</div>
+{{/each}}
