@@ -11,7 +11,7 @@ Race.init(
       allowNull: false,
       autoIncrement: true,
     },
-    race_id: {    //have to add a hook that randomizes race_id
+    race_id: {
       type: DataType.STRING,
       primaryKey: true,
     },
@@ -22,13 +22,6 @@ Race.init(
     duration: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    participants: {[],    //list participants here
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
     },
   },
   {
@@ -42,8 +35,8 @@ Race.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'race',
   }
 );
 
-module.exports = Project;
+module.exports = Race;
