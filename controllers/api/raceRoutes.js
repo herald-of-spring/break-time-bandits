@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Race } = require('../../models');
+const { Race, userRace } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -15,9 +15,9 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.post('/choice', withAuth, async (req, res) => {
   try {
-    const raceData = await Race.destroy({
+    const raceData = await userRace.create({
       where: {
         id: req.params.id,
         racer_id: req.session.racer_id,
@@ -35,4 +35,11 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
+// Anh Nguyen Duc
+  // 7:43 PM
+  // POST {   //student-side
+  // racer_choice: number,
+  // participant_message: string
+  // }
+  // route: POST /choice
 module.exports = router;

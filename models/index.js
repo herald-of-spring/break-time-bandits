@@ -12,4 +12,4 @@ User.belongsToMany(Race, {
   foreignKey: "user_id"
 });
 
-module.exports = { User, Race };
+module.exports = { User, Race, UserRace };
