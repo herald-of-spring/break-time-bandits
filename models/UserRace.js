@@ -19,7 +19,7 @@ UserRace.init(
     },
     participant_message: {
       // references a user's message for a particular race
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     user_id: {
