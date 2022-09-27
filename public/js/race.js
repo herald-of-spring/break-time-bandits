@@ -1,11 +1,10 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#user-name').value.trim();
-  const userID = document.querySelector('#user-id').value.trim();
-  const message = document.querySelector('#message').value.trim();
+  const racerID = document.querySelector('#racer-id').value.trim();
+  const message = document.querySelector('#participant-message').value.trim();
 
-  if (name && userID && message) {
+  if (racerID && message) {
     const response = await fetch(`/api/projects`, {
       method: 'POST',
       body: JSON.stringify({ name, userID, message }),
