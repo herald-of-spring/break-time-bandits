@@ -36,4 +36,5 @@ Remember to git pull before git push
 - models/user.js
 - server.js
 - controller/index and controller/homeRoutes (still need to sweep controller/api folder)
+
 >>>>>>> 6e938ce7f90b89455329548aae9eb590775dc74b
