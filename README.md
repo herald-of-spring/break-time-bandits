@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # duck-race
 
 
@@ -26,3 +27,13 @@ views.handlebars flow:
 
 
 
+=======
+# housekeeping branch
+Remember to git pull before git push
+## Already swept
+- config
+- db
+- models/user.js
+- server.js
+- controller/index and controller/homeRoutes (still need to sweep controller/api folder)
+>>>>>>> 6e938ce7f90b89455329548aae9eb590775dc74b
