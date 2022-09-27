@@ -35,9 +35,18 @@ router.post('/select', withAuth, async (req, res) => {
 router.post('/result', withAuth, async (req, res) => {
   try {
     const resultData = await Race.update({
-      where: 
-    })
+      where: { id: req.params.id,
+      },
+    });
+  
+    if (updatedRace > 0) {
+      res.status(200).end();
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(500).json(err);
   }
-})
-
-module.exports = router;
+  });
+  
+  e.exports = router;
