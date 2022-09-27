@@ -11,7 +11,9 @@ router.post('/create', withAuth, async (req, res) => {
       user_id: req.session.username,
       race_id: newRace.race_id
     })
-    res.status(200).json(newRace);
+    res.render('race', {
+      
+    });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -32,7 +34,9 @@ router.post('/select', withAuth, async (req, res) => {
 
 router.post('/result', withAuth, async (req, res) => {
   try {
-    const resultData = await UserRa
+    const resultData = await Race.update({
+      where: 
+    })
   }
 })
 
