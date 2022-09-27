@@ -10,11 +10,10 @@ Race.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
-      primaryKey: true,
     },
     race_id: {
       type: DataTypes.STRING,
-      // primaryKey: true,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -37,7 +36,9 @@ Race.init(
   {
     hooks: {
       beforeCreate: async (newRace) => {
-        newRace.race_id = await randomize();
+        if (!newRace.race_id) {
+          newRace.race_id = await randomize();
+        }
         newRace.gold = -1;
         newRace.silver = -1;
         newRace.bronze = -1;

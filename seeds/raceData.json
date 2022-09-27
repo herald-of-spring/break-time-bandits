@@ -1,12 +1,15 @@
 [
   {
-  "name": "100 second duck race",
-  "duration": 100
+    "race_id": "1",
+    "name": "100 second duck race",
+    "duration": 100
   }, {
-  "name": "10 second duck race",
-  "duration": 10
+    "race_id": "2",
+    "name": "10 second duck race",
+    "duration": 10
   }, {
-  "name": "60 second duck race",
-  "duration": 60
+    "race_id": "3",
+    "name": "60 second duck race",
+    "duration": 60
   }
 ]

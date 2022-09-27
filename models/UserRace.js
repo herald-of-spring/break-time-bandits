@@ -23,11 +23,11 @@ UserRace.init(
       allowNull: false,
     },
     user_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       // references the user model's id
       references: {
         model: "user",
-        key: "id",
+        key: "username",
       },
     },
     race_id: {
