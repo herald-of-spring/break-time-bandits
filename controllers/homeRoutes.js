@@ -26,7 +26,7 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/race/:race_id', async (req, res) => {
+router.get('/race/:race_id', withAuth, async (req, res) => {
   try {
     const raceData = await Race.findByPk(req.params.race_id, {
       include: [
