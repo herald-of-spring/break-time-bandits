@@ -1,5 +1,6 @@
-<!-- Loop over each object in the projects array; this is the list of current races -->
+{{!-- this is the first page the user is brought to after they login. it is the list of the current races going on that the user can join, or gives them to create a new race --}}
 
+<!-- Loop over each object in the projects array; this is the list of current races -->
 <ul class="list-group" id="current-races">
   {{#each race}}
   <li class="list-group-item">{{race_id}}<button class="btn btn-primary" id="join-btn">Join!</button></li>
