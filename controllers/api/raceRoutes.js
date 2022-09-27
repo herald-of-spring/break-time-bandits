@@ -11,9 +11,9 @@ router.post('/create', withAuth, async (req, res) => {
       user_id: req.session.username,
       race_id: newRace.race_id
     })
-    res.render('race', {
-      
-    });
+    res.render('race', {   ...race,
+      logged_in: req.session.logged_in
+  });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -35,9 +35,19 @@ router.post('/select', withAuth, async (req, res) => {
 router.post('/result', withAuth, async (req, res) => {
   try {
     const resultData = await Race.update({
-      where: 
-    })
+      where: { id: req.params.id,
+      },
+    });
+  
+    if (updatedRace > 0) {
+      res.status(200).end();
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(500).json(err);
   }
-})
+  });
 
 module.exports = router;
+

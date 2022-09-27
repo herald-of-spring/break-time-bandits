@@ -1,18 +1,27 @@
-<!-- Loop over each object in the projects array -->
-{{#each users as |user| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-    {{username}}
-    </h2>
-    <p>
-      <span class="racer-id">{{racer_id}}</span>
-    </p>
+{{!-- this is the first page the user is brought to after they login. it is the list of the current races going on that the user can join, or gives them to create a new race --}}
+
+<!-- Loop over each object in the projects array; this is the list of current races -->
+<ul class="list-group" id="current-races">
+  {{#each race}}
+  <li class="list-group-item">{{race_id}}<button class="btn btn-primary" id="join-btn">Join!</button></li>
+  {{/each}}
+</ul>
+
+{{!-- form to create a new race --}}
+
+ <h3>Create a new race:</h3>
+
+    <form class="form" id="new-race-form">
+      <div class="form-group">
+        <label for="racer-name">Race name </label>
+        <input class="form-input" id="race-name" name="race-name" />
+      </div>
+      <div class="form-group">
+        <label for="race-time">Enter race time:</label>
+        <textarea class="form-input" id="race-time" name="race-time"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="create-race-btn">Create</button>
+      </div>
+    </form>
   </div>
-  <div class="col-md-7">
-    <p>
-      {{participant_message}}
-    </p>
-  </div>
-</div>
-{{/each}}
