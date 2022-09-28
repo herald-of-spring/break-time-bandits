@@ -1,13 +1,14 @@
-const newFormHandler = async (event) => {
+// This is a formHandler for the race page in which the user  uses to put write race messsage 
+const raceFormHandler = async (event) => {
   event.preventDefault();
 
   const racerID = document.querySelector('#racer-id').value.trim();
   const message = document.querySelector('#participant-message').value.trim();
 
   if (racerID && message) {
-    const response = await fetch(`/api/projects`, {
+    const response = await fetch(`/api/race`, {
       method: 'POST',
-      body: JSON.stringify({ name, userID, message }),
+      body: JSON.stringify({ user_id, racer_id, message }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -25,7 +26,7 @@ const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    const response = await fetch(`/api/projects/${id}`, {
+    const response = await fetch(`/api/race/${id}`, {
       method: 'DELETE',
     });
 
@@ -39,7 +40,7 @@ const delButtonHandler = async (event) => {
 
 document
   .querySelector('.new-race-form')
-  .addEventListener('submit', newFormHandler);
+  .addEventListener('submit', raceFormHandler);
 
 document
   .querySelector('.race-list')
