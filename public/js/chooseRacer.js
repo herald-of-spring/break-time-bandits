@@ -1,7 +1,7 @@
 async function racepageFormHandler(event) {
     event.preventDefault();
 
-    const user = document.querySelector('input[name="race-body"]').console.log(user);
+    const user = document.querySelector('input[name="race-user"]').console.log(user);
 
     const racer_id = document.querySelector('input[name="racer-id"]').value;
     if (racer_id) {

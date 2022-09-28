@@ -7,7 +7,7 @@ const homepageHandler = async function(event) {
     console.log(raceName);
     console.log(raceTime);
   
-    await fetch(`/api/posts`, {
+    await fetch(`/api/race`, {
       method: 'POST',
       body: JSON.stringify({
         raceName,
