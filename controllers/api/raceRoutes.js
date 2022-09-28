@@ -5,15 +5,20 @@ const withAuth = require('../../utils/auth');
 router.post('/create', withAuth, async (req, res) => {
   try {
     const newRace = await Race.create(req.body);
-    const hostSelection = await UserRace.create({
+    await UserRace.create({
       racer_choice: -1,
       participant_message: "",
       user_id: req.session.username,
       race_id: newRace.race_id
     })
-    res.render('create', {   newRace, hostSelection,
-      user_id: req.session.username
-  });
+    raceData = await UserRace.findAll({
+      where: { id: req.params.race_id}
+    });
+    races = raceData.map((race) => race.get({ plain: true }));
+    res.render('racepage', {
+      user: req.session.username,
+      isHost: true
+    });
   } catch (err) {
     res.status(400).json(err);
   }
