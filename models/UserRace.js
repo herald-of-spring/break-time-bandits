@@ -31,7 +31,7 @@ UserRace.init(
       },
     },
     race_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       // references the race model's id
       references: {
         model: "race",

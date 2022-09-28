@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Race, User } = require('../models');
+const { Race, User, UserRace } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
@@ -28,21 +28,21 @@ router.get('/', withAuth, async (req, res) => {
 
 router.get('/race/:race_id', withAuth, async (req, res) => {
   try {
-    const raceData = await Race.findByPk(req.params.race_id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
+    const userData = await UserRace.findAll({
+      where: { id: req.params.race_id }
     });
 
-    const race = raceData.get({ plain: true });
+    const raceData = await Race.findByPk(req.params.race_id);
 
-    res.render('race', {
-      ...race,
-      logged_in: req.session.logged_in
+    const user = userData.get({ plain: true });
+    const race = raceData.get({ plain: true })
+
+    res.render('racepage', {
+      ...user,
+      currentUser: req.session.username,
+      ...race
     });
+
   } catch (err) {
     res.status(500).json(err);
   }
