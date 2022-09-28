@@ -11,9 +11,9 @@ router.post('/create', withAuth, async (req, res) => {
       user_id: req.session.username,
       race_id: newRace.race_id
     })
-    res.render('race', {
-      
-    });
+    res.render('create', {   newRace, hostSelection,
+      user_id: req.session.username
+  });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -48,5 +48,6 @@ router.post('/result', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
   });
-  
-  e.exports = router;
+
+module.exports = router;
+

@@ -14,6 +14,7 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
+      
     },
     username: {
       type: DataTypes.STRING,
