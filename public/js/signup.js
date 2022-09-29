@@ -11,7 +11,7 @@ const loginFormHandler = async function(event) {
       body: JSON.stringify({
         username, password
       }),
-      headers: { 'Race-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
     });
   
     if (response.ok) {

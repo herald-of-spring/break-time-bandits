@@ -13,7 +13,7 @@ const winnersformHandler = async function(event) {
         postTitle,
         postContent,
       }),
-      headers: { 'Winners-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
     });
   };
   

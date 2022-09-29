@@ -10,11 +10,12 @@ Race.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
+      primaryKey: true,
       
     },
     race_id: {
       type: DataTypes.STRING,
-      primaryKey: true,
+      
     },
     name: {
       type: DataTypes.STRING,

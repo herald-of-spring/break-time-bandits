@@ -13,7 +13,7 @@ const homepageHandler = async function(event) {
         raceName,
         raceTime,
       }),
-      headers: { 'Race-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
     });
   };
   
