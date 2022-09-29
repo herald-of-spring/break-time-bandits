@@ -16,12 +16,11 @@
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>Breaktime Bandits!</h1>
-      <img src="./images/3-power-raccoon.jpg" alt="raccoon bandit in powerstance" width="250" height="500">
+      <img class="justify-content-center" src="./images/3-power-raccoon.jpg" alt="raccoon bandit in powerstance" width="100" height="200" padding="5px">
 
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile">profile</a> 
         <button class="no-button" id="logout">logout</button>
         {{else}}
         <a href="/login">login</a>
