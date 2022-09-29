@@ -1,26 +1,50 @@
 const router = require('express').Router();
-const { Op } = require('sequelize');
-const { Race, User, UserRace } = require('../models');
+const { Race, UserRace } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
     const raceData = await Race.findAll({
       where: {
-        gold: {
-          [Op.is]: null
-        }
+        gold: null
       }
     });
 
     // Serializing data
     const race = raceData.map((race) => race.get({ plain: true }));
-
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       race, 
       logged_in: req.session.logged_in 
     });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/join/:race_id', withAuth, async (req, res) => {
+  try {
+    const raceData = await Race.findByPk(req.params.race_id);
+    const userRaceData = await UserRace.findOne({
+      where: {
+        user_id: req.session.username,
+        race_id: req.params.race_id
+      }
+    })
+
+    const race = raceData.get({ plain: true });
+    if (raceData.host == req.session.username || !userRaceData) {
+      redirector = "/race/" + req.params.race_id;
+      res.redirect(redirector);
+    }
+    else {
+      res.render('race', {
+        username: req.session.username,
+        race_id: req.params.race_id,
+        race_name: race.name
+      });
+    }
+
   } catch (err) {
     res.status(500).json(err);
   }

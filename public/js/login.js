@@ -16,9 +16,9 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the race page
-      document.location.replace('/race');
+      document.location.replace('/');
     } else {
-      alert(response.statusText);
+      alert(response.message);
     }
   }
 };
@@ -26,9 +26,8 @@ const loginFormHandler = async (event) => {
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const username = document.querySelector('#username-login').value.trim();
-  // const username = document.querySelector('#username-signup').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+  const username = document.querySelector('#username-signup').value.trim();
+  const password = document.querySelector('#password-signup').value.trim();
 
   if (username &&  password) {
     const response = await fetch('/api/user', {
@@ -38,7 +37,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/race');
+      document.location.replace('/');
     } else {
       alert(response.statusText);
     }

@@ -3,7 +3,7 @@
 <!-- Loop over each object in the projects array; this is the list of current races -->
 <ul class="list-group" id="current-races">
   {{#each race}}
-  <li class="list-group-item">{{name}}<button class="btn btn-primary" id="join-btn">Join!</button></li>
+  <li class="list-group-item">{{name}}<button class="btn btn-primary join-btn" id={{race_id}}>Join!</button></li>
   {{/each}}
 </ul>
 <li><a href="#">button</a></li>
@@ -27,4 +27,4 @@
     </form>
   </div>
 
-  <script src="../public/js/homepage.js"></script>
+  <script src="./js/homepage.js"></script>
