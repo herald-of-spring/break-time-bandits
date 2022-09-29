@@ -1,10 +1,16 @@
 const router = require('express').Router();
 const { Race, UserRace } = require('../../models');
 const withAuth = require('../../utils/auth');
+const randomize = require('../../utils/randomize');
 
 router.post('/create', withAuth, async (req, res) => {
   try {
-    const newRace = await Race.create(req.body);
+    const newRace = await Race.create({
+      race_id: randomize(),
+      ...req.body,
+      host: req.session.username
+    });
+    console.log("newRace", newRace);
     let redirector = "/race/" + newRace.race_id;
     res.redirect(redirector);
   } catch (err) {
@@ -18,6 +24,7 @@ router.post('/select', withAuth, async (req, res) => {
       ...req.body,
       user_id: req.session.username
     });
+    console.log("raceData", raceData);
     let redirector = "/race/" + raceData.race_id;
     res.redirect(redirector);
   } catch (err) {
@@ -28,11 +35,11 @@ router.post('/select', withAuth, async (req, res) => {
 router.put('/:race_id/result', withAuth, async (req, res) => {
   try {
     const resultData = await Race.update(req.body, {
-      where: {race_id: race_id}
+      where: {race_id: req.params.race_id}
     });
-
+    console.log("resultData", resultData);
     if (resultData) {
-      let redirector = "/race/" + resultData.race_id + "/results";
+      let redirector = "/race/" + req.params.race_id + "/results";
       res.redirect(redirector);
     }
     else {
@@ -46,9 +53,9 @@ router.put('/:race_id/result', withAuth, async (req, res) => {
 router.get('/:race_id/result', withAuth, async (req, res) => {
   try {
     const resultData = await Race.findByPk(req.params.race_id);
-
+    console.log("resultData", resultData);
     if (resultData.gold) {
-      let redirector = "/race/" + resultData.race_id + "/results";
+      let redirector = "/race/" + req.params.race_id + "/results";
       res.redirect(redirector);
     }
     else {

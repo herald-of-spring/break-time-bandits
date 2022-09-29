@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const randomize = require('../utils/randomize');
 
 class Race extends Model {}
 
@@ -9,6 +8,7 @@ Race.init(
     race_id: {
       type: DataTypes.STRING,
       primaryKey: true,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
@@ -33,14 +33,6 @@ Race.init(
     }
   },
   {
-    hooks: {
-      beforeCreate: async (newRace) => {
-        if (!newRace.race_id) {
-          newRace.race_id = await randomize();
-        }
-        return newRace;
-      },
-    },
     sequelize,
     timestamps: false,
     freezeTableName: true,

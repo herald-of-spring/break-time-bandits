@@ -1,7 +1,7 @@
 {{!-- this is the page that is displayed once a user joins a race.--}}
 
 {{!-- a row is created for each user containing username, their chosen racer, and a participant message. --}}
-<h3>Current race: {{race_name}}</h3>
+<h3>Current race: {{race.name}}</h3>
 {{#each user}}
 <div class="row mb-4 project">
   <div class="col-md-5">
@@ -27,9 +27,13 @@
 
   {{#if isHost}}
 
-    {{> racehost}}  
+    {{> racehost race_id=race.race_id}}  
   
   {{else}}
-    <a href="/">Back to Home</a>
+    <button class="back-btn btn-primary btn justify-content-center" id="result-btn">View Race Results</button>
+
+    <script>
+      document.querySelector('#result-btn').addEventListener('click', () => {document.location.href += "/results"})
+    </script>
   {{/if}}
 

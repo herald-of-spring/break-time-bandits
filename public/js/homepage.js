@@ -8,3 +8,24 @@ joinBtn.forEach((btn) => {
         document.location.href= reroute;
     })
 });
+
+const createRace = async function(event) {
+    event.preventDefault();
+  
+    const name = document.querySelector('#race-name').value.trim();
+    // const raceTime = document.querySelector('#race-time').value.trim();
+
+    if (name) {
+      await fetch(`/api/race/create`, {
+        method: 'POST',
+        body: JSON.stringify({
+          name,
+        }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+  };
+  
+  document
+    .querySelector('#new-race-form')
+    .addEventListener('submit', createRace);
