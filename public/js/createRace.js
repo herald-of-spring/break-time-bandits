@@ -1,10 +1,12 @@
-async function racepageFormHandler(event) {
+// This is a formHandler to create a new race form in the homepage.handlebars.
+async function newRaceFormHandler(event) {
     event.preventDefault();
 
-    const user = document.querySelector('input[name="race-user"]').console.log(user);
+    const user = document.querySelector('#race-id').value.trim()
+    console.log(user);
 
-    const racer_id = document.querySelector('input[name="racer-id"]').value;
-    if (racer_id) {
+    const racer_name= document.querySelector('#racer-name').value.trim();
+    if (racer_name) {
         const response = await fetch('/api/race', {
             method: 'POST',
             body: JSON.stringify({
@@ -26,4 +28,4 @@ async function racepageFormHandler(event) {
 }
 
 document.querySelector('#racer-choice-form')
-.addEventListener('submit', racepageFormHandler);
+.addEventListener('submit', newRaceFormHandler);

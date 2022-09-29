@@ -1,11 +1,11 @@
 {{!-- this is the page that is displayed once a user joins a race.--}}
-
+<h3 class="text-align-center">Current Race: {{race_name}}</h3>
 {{!-- a row is created for each user containing username, their chosen racer, and a participant message. --}}
-{{#each user}}
+{{#each userRace}}
 <div class="row mb-4 project">
   <div class="col-md-5">
     <h2>
-    {{username}}
+    {{user_id}}
     </h2>
     <p>
       <span class="racer-id">{{racer_choice}}</span>
@@ -23,7 +23,8 @@
 
 
 {{!-- if the user is the host of this race, the enter winners form is displayed --}}
-  {{#if isHost}}
+
+  {{#if isHost(currentUser, race.host)}}
 
     {{> racehost}}  
 

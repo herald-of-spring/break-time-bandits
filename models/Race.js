@@ -6,12 +6,6 @@ class Race extends Model {}
 
 Race.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      
-    },
     race_id: {
       type: DataTypes.STRING,
       primaryKey: true,
@@ -23,6 +17,10 @@ Race.init(
     duration: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    host: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     gold: {
       type: DataTypes.INTEGER,
@@ -40,9 +38,6 @@ Race.init(
         if (!newRace.race_id) {
           newRace.race_id = await randomize();
         }
-        newRace.gold = -1;
-        newRace.silver = -1;
-        newRace.bronze = -1;
         return newRace;
       },
     },

@@ -1,8 +1,8 @@
 const homepageHandler = async function(event) {
     event.preventDefault();
   
-    const raceName = document.querySelector('input[name="race-name"]').value;
-    const raceTime = document.querySelector('textarea[name="post-body"]').value;
+    const raceName = document.querySelector('#raceName').value.trim();
+    const raceTime = document.querySelector('#raceTime').value.trim();
   
     console.log(raceName);
     console.log(raceTime);
