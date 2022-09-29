@@ -11,12 +11,16 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+</html>
+
 
 <body>
+  
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>Breaktime Bandits!</h1>
       <img class="justify-content-center" src="./images/3-power-raccoon.jpg" alt="raccoon bandit in powerstance" width="100" height="200" padding="5px">
+
 
       <nav>
         <!-- Conditionally render login or logout links -->
@@ -27,6 +31,7 @@
         {{/if}}
       </nav>
     </header>
+    <div class="all">
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
       {{{ body }}}
@@ -38,8 +43,9 @@
 
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
-  <script src="./js/logout.js"></script>
+  <script src="/js/logout.js"></script>
   {{/if}}
+  </div>
 </body>
 
 </html>

@@ -33,7 +33,7 @@ router.get('/join/:race_id', withAuth, async (req, res) => {
     })
 
     const race = raceData.get({ plain: true });
-    if (raceData.host == req.session.username || !userRaceData) {
+    if (raceData.host == req.session.username || userRaceData) {
       redirector = "/race/" + req.params.race_id;
       res.redirect(redirector);
     }
@@ -41,7 +41,8 @@ router.get('/join/:race_id', withAuth, async (req, res) => {
       res.render('race', {
         username: req.session.username,
         race_id: req.params.race_id,
-        race_name: race.name
+        race_name: race.name,
+        logged_in: req.session.logged_in 
       });
     }
 
@@ -53,18 +54,21 @@ router.get('/join/:race_id', withAuth, async (req, res) => {
 router.get('/race/:race_id', withAuth, async (req, res) => {
   try {
     const userData = await UserRace.findAll({
-      where: { id: req.params.race_id }
+      where: { race_id: req.params.race_id }
     });
 
     const raceData = await Race.findByPk(req.params.race_id);
 
-    const user = userData.get({ plain: true });
+    const user = userData.map((u) => u.get({ plain: true }));
     const race = raceData.get({ plain: true });
-
+    console.log("user", user)
+    console.log("race", race)
     res.render('racepage', {
-      ...user,
+      user,
       currentUser: req.session.username,
-      ...race
+      race_name: race.name,
+      logged_in: req.session.logged_in,
+      isHost: req.session.username == race.host, 
     });
 
   } catch (err) {
@@ -98,7 +102,8 @@ router.get('/race/:race_id/results', withAuth, async (req, res) => {
         currentUser: req.session.username,
         ...gold_racers,
         ...silver_racers,
-        ...bronze_racers
+        ...bronze_racers,
+        logged_in: req.session.logged_in
       });
     }
     else {

@@ -4,7 +4,6 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const auth = require('./utils/auth');
-const isHost = require('./utils/isHost');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -16,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 // const io = require('socket.io')(http);
 
 // Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create({ auth, isHost });
+const hbs = exphbs.create({ auth });
 
 // Cookie information, probably shouldn't have the secret in plaintext
 const sess = {

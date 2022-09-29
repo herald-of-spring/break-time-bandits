@@ -1,20 +1,22 @@
 {{!-- this is the page that is displayed once a user joins a race.--}}
 <h3 class="text-align-center">Current Race: {{race_name}}</h3>
 {{!-- a row is created for each user containing username, their chosen racer, and a participant message. --}}
-{{#each userRace}}
-<div class="row mb-4 project">
+<h2 class="text-center">Current Race: {{race_name}}</h3>
+{{#each user}}
+<div class="row project d-flex justify-content-between mb-4">
   <div class="col-md-5">
     <h2>
     {{user_id}}
     </h2>
+    </div>
     <p>
-      <span class="racer-id">{{racer_choice}}</span>
+      <span class="racer-id justify-content-center">Racer #: {{racer_choice}}</span>
     </p>
-  </div>
+  
   {{#if participant_message}}
-  <div class="col-md-7">
-    <p>
-      {{participant_message}}
+  <div class="col-md-7 align-content-right">
+    <p class="participant-message">
+      "{{participant_message}}"
     </p>
   </div>
   {{/if}}
@@ -23,10 +25,12 @@
 
 
 {{!-- if the user is the host of this race, the enter winners form is displayed --}}
-
-  {{#if isHost(currentUser, race.host)}}
+<div class="mt-5">
+  {{#if isHost}}
 
     {{> racehost}}  
-
+  
+  {{else}}
+    <a href="/">Back to Home</a>
   {{/if}}
-
+</div>
