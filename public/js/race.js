@@ -2,7 +2,6 @@
 const raceFormHandler = async (event) => {
   event.preventDefault();
 
-  const user_id = document.querySelector('span').textContent;
   const race_id = document.querySelector('button').id;
   const racer_choice = document.querySelector('#racer-id').value.trim();
   const participant_message = document.querySelector('#participant-message').value.trim();

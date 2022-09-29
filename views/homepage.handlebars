@@ -6,7 +6,6 @@
   <li class="list-group-item">{{name}}<button class="btn btn-primary join-btn" id={{race_id}}>Join!</button></li>
   {{/each}}
 </ul>
-<li><a href="#">button</a></li>
 
 {{!-- form to create a new race --}}
 
@@ -17,14 +16,15 @@
         <label for="racer-name">Race name</label>
         <input class="form-input" id="race-name" name="race-name" />
       </div>
-      <div class="form-group">
+      {{!-- <div class="form-group">
         <label for="race-time">Enter race time:</label>
         <textarea class="form-input" id="race-time" name="race-time"></textarea>
-      </div>
+      </div> --}}
       <div class="form-group">
         <button type="submit" class="btn btn-primary" id="create-race-btn">Create</button>
       </div>
     </form>
   </div>
 
-  <script src="./js/homepage.js"></script>
+  <script src="/js/homepage.js"></script>
+  <script src="/js/startRace.js"></script>
