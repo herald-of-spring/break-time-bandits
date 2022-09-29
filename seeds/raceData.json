@@ -2,14 +2,17 @@
   {
     "race_id": "1",
     "name": "100 second duck race",
-    "duration": 100
+    "duration": 100,
+    "host": "Sal"
   }, {
     "race_id": "2",
     "name": "10 second duck race",
-    "duration": 10
+    "duration": 10,
+    "host": "Lernantino"
   }, {
     "race_id": "3",
     "name": "60 second duck race",
-    "duration": 60
+    "duration": 60,
+    "host": "Amiko"
   }
 ]

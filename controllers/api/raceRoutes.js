@@ -5,15 +5,8 @@ const withAuth = require('../../utils/auth');
 router.post('/create', withAuth, async (req, res) => {
   try {
     const newRace = await Race.create(req.body);
-    const hostSelection = await UserRace.create({
-      racer_choice: -1,
-      participant_message: "",
-      user_id: req.session.username,
-      race_id: newRace.race_id
-    })
-    res.render('create', {   newRace, hostSelection,
-      user_id: req.session.username
-  });
+    let redirector = "/race/" + newRace.race_id;
+    res.redirect(redirector);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -25,29 +18,46 @@ router.post('/select', withAuth, async (req, res) => {
       ...req.body,
       user_id: req.session.username
     });
-
-    res.status(200).json(raceData);
+    let redirector = "/race/" + raceData.race_id;
+    res.redirect(redirector);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.post('/result', withAuth, async (req, res) => {
+router.put('/:race_id/result', withAuth, async (req, res) => {
   try {
-    const resultData = await Race.update({
-      where: { id: req.params.id,
-      },
+    const resultData = await Race.update(req.body, {
+      where: {race_id: race_id}
     });
-  
-    if (updatedRace > 0) {
-      res.status(200).end();
-    } else {
-      res.status(404).end();
+
+    if (resultData) {
+      let redirector = "/race/" + resultData.race_id + "/results";
+      res.redirect(redirector);
+    }
+    else {
+      res.status(404);
     }
   } catch (err) {
     res.status(500).json(err);
   }
-  });
+});
+
+router.get('/:race_id/result', withAuth, async (req, res) => {
+  try {
+    const resultData = await Race.findByPk(req.params.race_id);
+
+    if (resultData.gold) {
+      let redirector = "/race/" + resultData.race_id + "/results";
+      res.redirect(redirector);
+    }
+    else {
+      res.status(400);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
 
