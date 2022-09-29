@@ -25,7 +25,7 @@ router.post('/select', withAuth, async (req, res) => {
   }
 });
 
-router.post('/:race_id/result', withAuth, async (req, res) => {
+router.put('/:race_id/result', withAuth, async (req, res) => {
   try {
     const resultData = await Race.update(req.body, {
       where: {race_id: race_id}

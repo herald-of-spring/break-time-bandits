@@ -1,16 +1,16 @@
 const router = require('express').Router();
+const { Op } = require('sequelize');
 const { Race, User, UserRace } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
     const raceData = await Race.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
+      where: {
+        gold: {
+          [Op.is]: null
+        }
+      }
     });
 
     // Serializing data
