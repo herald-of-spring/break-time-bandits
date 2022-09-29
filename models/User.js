@@ -10,12 +10,15 @@ class User extends Model {
 
 User.init(
   {
+<<<<<<< HEAD
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true  
     },
+=======
+>>>>>>> 9bba5b1cac77a952346894633b92a16f2d386bd7
     username: {
       type: DataTypes.STRING,
       allowNull: false,
