@@ -16,14 +16,17 @@ const createRace = async function(event) {
     // const raceTime = document.querySelector('#race-time').value.trim();
 
     if (name) {
-      await fetch(`/api/race/create`, {
+      let response = await fetch(`/api/race/create`, {
         method: 'POST',
         body: JSON.stringify({
           name,
         }),
         headers: { 'Content-Type': 'application/json' },
       });
+      response = await response.json();
+      document.location.href = response.redirect;
     }
+
   };
   
   document

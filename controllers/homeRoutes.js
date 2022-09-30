@@ -29,7 +29,7 @@ router.get('/join/:race_id', withAuth, async (req, res) => {
 
     if (raceData.gold) {
       let redirector = "/race/" + req.params.race_id + "/results";
-      res.redirect(redirector);
+      res.redirect(303, redirector);
     }
     else {
       const userRaceData = await UserRace.findOne({
@@ -43,7 +43,7 @@ router.get('/join/:race_id', withAuth, async (req, res) => {
       console.log("race", race);
       if (raceData.host == req.session.username || userRaceData) {
         redirector = "/race/" + req.params.race_id;
-        res.redirect(redirector);
+        res.redirect(303, redirector);
       }
       else {
         res.render('race', {
@@ -65,7 +65,7 @@ router.get('/race/:race_id', withAuth, async (req, res) => {
     
     if (raceData.gold) {
       let redirector = "/race/" + req.params.race_id + "/results";
-      res.redirect(redirector);
+      res.redirect(303, redirector);
     }
     else {
       const userData = await UserRace.findAll({
@@ -133,7 +133,7 @@ router.get('/race/:race_id/results', withAuth, async (req, res) => {
     }
     else {
       redirector = "/race/" + req.params.race_id;
-      res.redirect(redirector);
+      res.redirect(303, redirector);
     }
   } catch (err) {
     res.status(500).json(err);

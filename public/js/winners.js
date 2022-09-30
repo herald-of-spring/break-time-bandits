@@ -10,7 +10,7 @@ const winnersformHandler = async function(event) {
   const route = "/api/race/" + race_id + "/result";
 
   if (gold && silver && bronze) {
-    await fetch(route, {
+    let response = await fetch(route, {
       method: 'PUT',
       body: JSON.stringify({
         gold,
@@ -19,6 +19,8 @@ const winnersformHandler = async function(event) {
       }),
       headers: { 'Content-Type': 'application/json' },
     });
+    response = await response.json();
+    document.location.href = response.redirect;
   }
 };
   
