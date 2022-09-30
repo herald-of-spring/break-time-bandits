@@ -2,19 +2,20 @@
 const raceFormHandler = async (event) => {
   event.preventDefault();
 
-  const race_id = document.querySelector('button').id;
+  const race_id = document.querySelector('div.form-group > button').id;
   const racer_choice = document.querySelector('#racer-id').value.trim();
   const participant_message = document.querySelector('#participant-message').value.trim();
 
-  if (racerID && message) {
-    await fetch(`/api/race/select`, {
+  if (racer_choice && participant_message) {
+    let response = await fetch(`/api/race/select`, {
       method: 'POST',
       body: JSON.stringify({ racer_choice, participant_message, race_id }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
-
+    response = await response.json();
+    document.location.href = response.redirect;
   }
 };
 

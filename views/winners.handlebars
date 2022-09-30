@@ -2,11 +2,65 @@
 
 <div class="text-center">
   <h1 class="winners" id="winners">Winners!</h1>
-  <img src="../images/2-jewels-raccoon.jpg" alt="raccoon winner with loot"/>
+  <img src="/images/2-jewels-raccoon.jpg" alt="raccoon winner with loot"/>
   <h2>Gold: {{race.gold}} Silver: {{race.silver}} Bronze: {{race.bronze}}</h2>
-  <p>{{gold_racers}}</p>
-  <p>{{silver_racers}}</p>
-  <p>{{bronze_racers}}</p>
+  {{#each gold_racers}}
+  <h2>Gold winners</h2> 
+  <div class="row mb-4 project">
+    <div class="col-md-5">
+      <h2>
+      {{user_id}}
+      </h2>
+    </div>
+    {{#if participant_message}}
+    <div class="col-md-7">
+      <p>
+        {{participant_message}}
+      </p>
+    </div>
+    {{/if}}
+  </div>
+  {{/each}}
+  
+  {{#each silver_racers}}
+  <h2>Silver winners</h2>
+  <div class="row mb-4 project">
+    <div class="col-md-5">
+      <h2>
+      {{user_id}}
+      </h2>
+    </div>
+    {{#if participant_message}}
+    <div class="col-md-7">
+      <p>
+        {{participant_message}}
+      </p>
+    </div>
+    {{/if}}
+  </div>
+  {{/each}}
+
+  {{#each bronze_racers}}
+  <h2>Bronze winners</h2>
+  <div class="row mb-4 project">
+    <div class="col-md-5">
+      <h2>
+      {{user_id}}
+      </h2>
+    </div>
+    {{#if participant_message}}
+    <div class="col-md-7">
+      <p>
+        {{participant_message}}
+      </p>
+    </div>
+    {{/if}}
+  </div>
+  {{/each}}
 </div>
 
 <button class="back-btn btn-primary btn justify-content-center" id="back-btn">Back to Race Homepage</button>
+
+<script>
+  document.querySelector('#back-btn').addEventListener('click', () => {document.location.href = "/"})
+</script>

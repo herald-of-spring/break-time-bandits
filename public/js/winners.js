@@ -1,22 +1,29 @@
 
 const winnersformHandler = async function(event) {
-    event.preventDefault();
-  
-    const username = document.querySelector('#username-input-signup').value.trim();
-    const password = document.querySelector('#password-input-signup').value.trim();
-    console.log(username);
-    console.log(password);
-  
-    await fetch(`/api/race`, {
-      method: 'POST',
+  event.preventDefault();
+
+  const race_id = document.querySelector('div.form-group > button').id;
+
+  const gold = document.querySelector('#gold-racer').value.trim();
+  const silver = document.querySelector('#silver-racer').value.trim();
+  const bronze = document.querySelector('#bronze-racer').value.trim();
+  const route = "/api/race/" + race_id + "/result";
+
+  if (gold && silver && bronze) {
+    let response = await fetch(route, {
+      method: 'PUT',
       body: JSON.stringify({
-        postTitle,
-        postContent,
+        gold,
+        silver,
+        bronze
       }),
-      headers: { 'Winners-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
     });
-  };
+    response = await response.json();
+    document.location.href = response.redirect;
+  }
+};
   
-  document
-    .querySelector('#winners-form')
-    .addEventListener('submit', winnersformHandler);
+document
+  .querySelector('#winners-form')
+  .addEventListener('submit', winnersformHandler);

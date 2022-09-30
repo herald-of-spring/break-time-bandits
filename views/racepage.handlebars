@@ -1,7 +1,9 @@
 {{!-- this is the page that is displayed once a user joins a race.--}}
 <h3 class="text-align-center">Current Race: {{race_name}}</h3>
 {{!-- a row is created for each user containing username, their chosen racer, and a participant message. --}}
-<h2 class="text-center">Current Race: {{race_name}}</h3>
+
+<h2 class="text-center">Current Race: {{race.name}}</h2>
+
 {{#each user}}
 <div class="row project d-flex justify-content-between mb-4">
   <div class="col-md-5">
@@ -28,9 +30,20 @@
 <div class="mt-5">
   {{#if isHost}}
 
-    {{> racehost}}  
+    {{> racehost race_id=race.race_id}}  
   
   {{else}}
-    <a href="/">Back to Home</a>
+    <button class="back-btn btn-primary btn justify-content-center" id="result-btn">View Race Results</button>
+
+    <script>
+      document.querySelector('#result-btn').addEventListener('click', () => {document.location.href += "/results"})
+    </script>
   {{/if}}
+
+<button class="back-btn btn-primary btn justify-content-center" id="back-btn">Back to Race Homepage</button>
+
+<script>
+  document.querySelector('#back-btn').addEventListener('click', () => {document.location.href = "/"})
+</script>
+
 </div>
