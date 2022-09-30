@@ -18,7 +18,7 @@ const loginFormHandler = async (event) => {
       // If successful, redirect the browser to the race page
       document.location.replace('/');
     } else {
-      alert(response.message);
+      alert("Wrong username or password, please enter again.");
     }
   }
 };
@@ -39,7 +39,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert(response.statusText);
+      alert("That username is already in use. Please pick a unique one.");
     }
   }
 };
