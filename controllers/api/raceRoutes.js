@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Race, UserRace } = require('../../models');
 const withAuth = require('../../utils/auth');
 const randomize = require('../../utils/randomize');
+const chalk = require('chalk');
 
 router.post('/create', withAuth, async (req, res) => {
   try {
@@ -10,7 +11,7 @@ router.post('/create', withAuth, async (req, res) => {
       ...req.body,
       host: req.session.username
     });
-    console.log("newRace", newRace);
+    console.log(chalk.red("newRace", newRace));
     let redirector = "/race/" + newRace.race_id;
     res.json({redirect: redirector});
     // res.redirect(303, redirector);
@@ -25,7 +26,7 @@ router.post('/select', withAuth, async (req, res) => {
       ...req.body,
       user_id: req.session.username
     });
-    console.log("raceData", raceData);
+    console.log(chalk.blue("raceData", raceData));
     let redirector = "/race/" + raceData.race_id;
     res.json({redirect: redirector});
     // res.redirect(303, redirector);
@@ -39,7 +40,7 @@ router.put('/:race_id/result', withAuth, async (req, res) => {
     const resultData = await Race.update(req.body, {
       where: {race_id: req.params.race_id}
     });
-    console.log("resultData", resultData);
+    console.log(chalk.red("resultData", resultData));
     if (resultData) {
       let redirector = "/race/" + req.params.race_id + "/results";
       res.json({redirect: redirector});

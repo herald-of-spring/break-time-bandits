@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Race, UserRace } = require('../models');
 const withAuth = require('../utils/auth');
+const chalk = require('chalk');
 
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -13,7 +14,7 @@ router.get('/', withAuth, async (req, res) => {
     // Serializing data
     const race = raceData.map((race) => race.get({ plain: true }));
     // Pass serialized data and session flag into template
-    console.log("race", race);
+    console.log(chalk.blue("race", race));
     res.render('homepage', { 
       race, 
       logged_in: req.session.logged_in 
@@ -40,7 +41,7 @@ router.get('/join/:race_id', withAuth, async (req, res) => {
       })
 
       const race = raceData.get({ plain: true });
-      console.log("race", race);
+      console.log(chalk.red("race", race));
       if (raceData.host == req.session.username || userRaceData) {
         redirector = "/race/" + req.params.race_id;
         res.redirect(303, redirector);
@@ -74,8 +75,8 @@ router.get('/race/:race_id', withAuth, async (req, res) => {
 
       const user = userData.map((u) => u.get({ plain: true }));
       const race = raceData.get({ plain: true });
-      console.log("user", user);
-      console.log("race", race);
+      console.log(chalk.red("user", user));
+      console.log(chalk.blue("race", race));
       res.render('racepage', {
         user,
         currentUser: req.session.username,
@@ -92,7 +93,7 @@ router.get('/race/:race_id', withAuth, async (req, res) => {
 router.get('/race/:race_id/results', withAuth, async (req, res) => {
   try {
     const raceData = await Race.findByPk(req.params.race_id);
-    console.log("raceData", raceData)
+    console.log(chalk.yellow("raceData", raceData))
     if (raceData.gold) {
       const goldData = await UserRace.findAll({
         where: {
@@ -118,10 +119,10 @@ router.get('/race/:race_id/results', withAuth, async (req, res) => {
       const bronze_racers = bronzeData.map((u) => u.get({ plain: true }));
       const race = raceData.get({ plain: true });
 
-      console.log("race", race);
-      console.log("gold_racers", gold_racers);
-      console.log("silver_racers", silver_racers);
-      console.log("bronze_racers", bronze_racers);
+      console.log(chalk.red("race", race));
+      console.log(chalk.yellow("gold_racers", gold_racers));
+      console.log(chalk.blue("silver_racers", silver_racers));
+      console.log(chalk.green("bronze_racers", bronze_racers));
       res.render('winners', {
         race,
         currentUser: req.session.username,
