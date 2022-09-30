@@ -22,3 +22,17 @@ header, .project:not(:last-child) {
   font-weight: bold;
   margin-left: -5px;
 }
+
+main {
+  background-color: #CE6442;
+  border: #D28551 solid 4px;
+  box-shadow: 5px 5px 5px black;
+}
+
+.participant-message {
+  color: #3D405B;
+}
+
+.all {
+ background-color: #447488;
+}

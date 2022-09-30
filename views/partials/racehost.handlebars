@@ -4,15 +4,15 @@
 <form class="form winners-form" id="winners-form">
       <div class="form-group">
         <label for="gold-racer"> 1st Place:</label>
-        <input class="form-input" type="number" id="gold-racer" name="gold-racer" />
+        <input class="form-input" type="number" min="1" max="20" id="gold-racer" name="gold-racer" />
       </div>
       <div class="form-group">
         <label for="silver-racer">2nd Place:</label>
-        <textarea class="form-input" type ="number" id="silver-racer" name="silver-racer"></textarea>
+        <textarea class="form-input" type ="number" min="1" max="20" id="silver-racer" name="silver-racer"></textarea>
       </div>
       <div class="form-group">
         <label for="bronze-racer">3rd Place:</label>
-        <textarea class="form-input" type ="number" id="bronze-racer" name="bronze-racer"></textarea>
+        <textarea class="form-input" type ="number" min="1" max="20" id="bronze-racer" name="bronze-racer"></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary" id={{race_id}}>Submit!</button>
