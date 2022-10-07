@@ -26,6 +26,18 @@
       </div>
     </form>
   </div>
+{{#if user.length}}
+<h2 class="mt-3">Top 5 Gold Medalists</h2>
+{{/if}}
+{{#each user}}
+<div class="row project d-flex justify-content-between m-3">
+  <div class="col-md-5">
+    <h3>
+    {{username}}
+    </h3>
+    </div>
+    <h3 class="justify-content-center">{{gold}}</h3>
 </div>
+{{/each}}
 
-  <script src="/js/homepage.js"></script>
+<script src="/js/homepage.js"></script>

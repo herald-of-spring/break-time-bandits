@@ -4,8 +4,10 @@
   <h1 class="winners" id="winners">Winners!</h1>
   <img class="winner-raccoon" src="/images/2-jewels-raccoon.jpg" alt="raccoon winner with loot" width="500" height="350" padding="5px"/>
   <h2 class="mt-5">Gold: {{race.gold}} Silver: {{race.silver}} Bronze: {{race.bronze}}</h2>
+  {{#if gold_racers.length}}
+  <h2 class="mt-4">Gold Medalists</h2>
+  {{/if}}
   {{#each gold_racers}}
-  <h2 class="mt-4">Gold winners</h2> 
   <div class="row mb-4 project">
     <div class="col-md-5">
       <h2>
@@ -13,17 +15,19 @@
       </h2>
     </div>
     {{#if participant_message}}
-    <div class="col-md-7">
-      <p>
-        {{participant_message}}
+    <div class="col-md-7 align-content-right">
+      <p class="participant-message">
+        "{{participant_message}}"
       </p>
     </div>
     {{/if}}
   </div>
   {{/each}}
   
+  {{#if silver_racers.length}}
+  <h2 class="mt-4">Silver Medalists</h2>
+  {{/if}}
   {{#each silver_racers}}
-  <h2>Silver winners</h2>
   <div class="row mb-4 project">
     <div class="col-md-5">
       <h2>
@@ -31,17 +35,19 @@
       </h2>
     </div>
     {{#if participant_message}}
-    <div class="col-md-7">
-      <p>
-        {{participant_message}}
+    <div class="col-md-7 align-content-right">
+      <p class="participant-message">
+        "{{participant_message}}"
       </p>
     </div>
     {{/if}}
   </div>
   {{/each}}
 
+  {{#if bronze_racers.length}}
+  <h2>Bronze Medalists</h2>
+  {{/if}}
   {{#each bronze_racers}}
-  <h2>Bronze winners</h2>
   <div class="row mb-4 project">
     <div class="col-md-5">
       <h2>
@@ -49,9 +55,9 @@
       </h2>
     </div>
     {{#if participant_message}}
-    <div class="col-md-7">
-      <p>
-        {{participant_message}}
+    <div class="col-md-7 align-content-right">
+      <p class="participant-message">
+        "{{participant_message}}"
       </p>
     </div>
     {{/if}}

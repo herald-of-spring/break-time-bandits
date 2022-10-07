@@ -6,7 +6,7 @@ const raceFormHandler = async (event) => {
   const racer_choice = document.querySelector('#racer-id').value.trim();
   const participant_message = document.querySelector('#participant-message').value.trim();
 
-  if (racer_choice && participant_message) {
+  if (racer_choice) {
     let response = await fetch(`/api/race/select`, {
       method: 'POST',
       body: JSON.stringify({ racer_choice, participant_message, race_id }),

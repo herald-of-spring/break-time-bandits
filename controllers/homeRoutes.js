@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Race, UserRace } = require('../models');
+const { Race, UserRace, User } = require('../models');
 const withAuth = require('../utils/auth');
 const chalk = require('chalk');
 
@@ -11,12 +11,20 @@ router.get('/', withAuth, async (req, res) => {
       }
     });
 
+    const userData = await User.findAll({
+      order: [
+        ["gold", "DESC"]
+      ],
+      limit: 5
+    })
     // Serializing data
     const race = raceData.map((race) => race.get({ plain: true }));
+    const user = userData.map((user) => user.get({ plain: true }));
     // Pass serialized data and session flag into template
     console.log(chalk.blue("race", race));
     res.render('homepage', { 
-      race, 
+      race,
+      user,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -49,8 +57,7 @@ router.get('/join/:race_id', withAuth, async (req, res) => {
       else {
         res.render('race', {
           username: req.session.username,
-          race_id: req.params.race_id,
-          race_name: race.name,
+          race,
           logged_in: req.session.logged_in 
         });
       }
@@ -69,6 +76,16 @@ router.get('/race/:race_id', withAuth, async (req, res) => {
       res.redirect(303, redirector);
     }
     else {
+      const isEnrolled = await UserRace.findOne({
+        where: {
+          race_id: req.params.race_id,
+          user_id: req.session.username
+        }
+      })
+      if (!isEnrolled) {
+        redirector = "/join/" + req.params.race_id;
+        res.redirect(303, redirector);
+      }
       const userData = await UserRace.findAll({
         where: { race_id: req.params.race_id }
       });
@@ -141,26 +158,26 @@ router.get('/race/:race_id/results', withAuth, async (req, res) => {
   }
 });
 
-// Profiles and leaderboards can be implemented after, if time allows
-// // Use withAuth middleware to prevent access to route
-// router.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Project }],
-//     });
+// Use withAuth middleware to prevent access to route
+router.get('/profile', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.username);
 
-//     const user = userData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('profile', {
+      user,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/patch', withAuth, async (req, res) => {
+  res.render('patch');
+})
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route

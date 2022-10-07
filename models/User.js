@@ -19,6 +19,18 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    gold: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    silver: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    bronze: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    }
   },
   {
     hooks: {
